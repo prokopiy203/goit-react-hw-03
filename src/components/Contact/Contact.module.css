@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  padding: 5px;
+  border-radius: 12px;
+  border: solid 2px white;
+  margin-top: 10px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}

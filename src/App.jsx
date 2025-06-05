@@ -1,7 +1,7 @@
-import { useState } from "react";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,12 +12,28 @@ function App() {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
 
+  const addContact = (newContact) => {
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
+
+  const [inputValue, setInputSearch] = useState("");
+
+  const handleDelete = (idToDelete) => {
+    setContacts((prevContact) =>
+      prevContact.filter((contact) => contact.id !== idToDelete)
+    );
+  };
+
+  const currentContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(inputValue.toLocaleLowerCase())
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox onChange={setContacts} />
-      <ContactList value={contacts} />
+      <ContactForm addContact={addContact} />
+      <SearchBox value={inputValue} onSearch={setInputSearch} />
+      <ContactList contactList={currentContacts} onChange={handleDelete} />
     </div>
   );
 }

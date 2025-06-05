@@ -1,8 +1,12 @@
-function ContactList() {
+import Contact from "../Contact/Contact";
+
+function ContactList({ contactList, onChange }) {
   return (
-    <>
-      <Contact />
-    </>
+    <ul>
+      {contactList.map((contact) => (
+        <Contact key={contact.id} value={contact} onChange={onChange} />
+      ))}
+    </ul>
   );
 }
 
